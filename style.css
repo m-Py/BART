@@ -1,0 +1,54 @@
+#bigwrap {
+  text-align: center;
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 30%;
+}
+
+
+#ballonwrap {
+  height: 350px;
+  width: 100%;
+}
+
+#ballon {
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+  display:block;
+}
+
+#money, #pumps, #press, #collect, #total {
+  padding-top: 1em;
+  font-size: 110%;
+  color: #333;
+  padding: 0.5em;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin: auto;
+  text-align: center;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+#money, #pumps {
+  display: inline-block;
+  width: 46%;
+  background: #0096fd;
+}
+
+#press, #collect {
+  cursor: pointer;
+  display: block;
+  background: #eee;
+}
+
+#press:hover, #collect:hover {
+  background-color: #f2f2f2;
+  border-color: #888;
+  box-shadow: 0 0 2px #ccc;
+}
+
+#press:active, #collect:active {
+  vertical-align: -1px;
+}
