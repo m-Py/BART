@@ -1,6 +1,6 @@
 $(document).ready(function() { 
 
-  // initialize
+  // initialize values
   
   var round = 0;
   var start_size = 150; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
@@ -13,10 +13,23 @@ $(document).ready(function() {
   var array; // will be used to determine the explosion point of the balloon
   var array_rand; // numbers are drawn from this array; it is filled in the 'new_sequence' function
   
-  $('#press').html('Zum Aufpumpen klicken'); 
-  $('#collect_term').html('Guthaben einsammeln:');
-  $('#lastround_term').html('Letzte Runde:');
-  $('#total_term').html('Gesamtguthaben:');
+  // initialize language
+  
+  var label_press = 'Zum Aufpumpen klicken';
+  var label_collect = 'Guthaben einsammeln:';
+  var label_lastround = 'Letzte Runde:';
+  var label_balance = 'Gesamtguthaben:';
+  var label_currency = ' Euro';
+  var label_header = 'Ballon Spiel Runde ';
+  var msg_explosion = '<h2>Der Ballon ist explodiert und das erspielte Geld verloren!<br />Die nächste Runde startet.</h2>';
+  var msg_collect = '<h2>Das erspielte Geld ist sicher in der Bank.<br />Die nächste Runde startet.</h2>';
+  
+  // initialize labels
+  
+  $('#press').html(label_press); 
+  $('#collect_term').html(label_collect);
+  $('#lastround_term').html(label_lastround);
+  $('#total_term').html(label_balance);
 
   // function to create an array determining the break point of the ballon; balloon explodes when number 1 is drawn from the array
   var new_sequence = function() {
@@ -56,22 +69,22 @@ $(document).ready(function() {
     $('#ballon').width(size); 
     $('#ballon').height(size);
     $('#ballon').show()
-    $('#round').html('<h2>Ballon Spiel Runde '+round+'<h2>');
-    $('#collect_value').html(money.toFixed(2)+' Euro');
-    $('#lastround_value').html(win_lastround.toFixed(2)+' Euro');
-    $('#total_value').html(total.toFixed(2)+' Euro');
+    $('#round').html('<h2>'+label_header+round+'<h2>');
+    $('#collect_value').html(money.toFixed(2)+label_currency);
+    $('#lastround_value').html(win_lastround.toFixed(2)+label_currency);
+    $('#total_value').html(total.toFixed(2)+label_currency);
   };
   
   
   // text that is shown when a round ends...
   // ...if the balloon explodes
   var explosion = function() {
-    $('#explode').html('<h2>Der Ballon ist explodiert und das erspielte Geld verloren!<br />Die nächste Runde startet.</h2>').show().delay(2000).hide(0);
+    $('#message').html(msg_explosion).show().delay(2000).hide(0);
   }
   
   // ... if the money is collected before it explodes
   var collected = function() {
-    $('#explode').html('<h2>Das erspielte Geld ist sicher in der Bank.<br />Die nächste Runde startet.</h2>').show().delay(2000).hide(0);
+    $('#message').html(msg_collect).show().delay(2000).hide(0);
   }
    
 
@@ -98,7 +111,7 @@ $(document).ready(function() {
 	  money += 0.05;
 	  $('#ballon').width(size); 
 	  $('#ballon').height(size);
-	  $('#collect_value').html(money.toFixed(2)+' Euro'); 
+	  $('#collect_value').html(money.toFixed(2)+label_currency); 
 	}
       }
     }
