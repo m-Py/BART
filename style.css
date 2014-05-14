@@ -23,7 +23,7 @@
   display:block;
 }
 
-#money, #pumps, #press, #collect, #total {
+#money, #lastround, #press, #collect, #total {
   padding-top: 10px;
   color: #333;
   padding: 8px;
@@ -36,7 +36,7 @@
 }
 
 
-#money, #pumps {
+#money, #lastround {
   display: table-cell;
   background: #0096fd;
   width: 50%;

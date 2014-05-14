@@ -9,6 +9,7 @@ $(document).ready(function() {
   var pumps; 
   var total = 0; // money that has been earned in total (in several rounds)
   var money = 0; // money that has been earned in a single round
+  var win_lastround = 0;
   var array; // will be used to determine the explosion point of the balloon
   var array_rand; // numbers are drawn from this array; it is filled in the 'new_sequence' function
   
@@ -54,8 +55,8 @@ $(document).ready(function() {
     $('#ballon').height(size);
     $('#ballon').show()
     $('#round').html('<h2>Ballon Spiel Runde '+round+'<h2>');
-    $('#money').html('Guthaben: '+money.toFixed(2)+' Euro');
-    $('#pumps').html(pumps+' Mal gepumpt');
+    $('#money').html('Guthaben:<br />'+money.toFixed(2)+' Euro');
+    $('#lastround').html('Letzte Runde:<br />'+win_lastround.toFixed(2)+' Euro');
     $('#total').html('Gesamtguthaben: '+total.toFixed(2)+' Euro');
   };
   
@@ -73,31 +74,30 @@ $(document).ready(function() {
    
 
   // pump button functionality 
-  $("#press").click(function() {
+  $('#press').click(function() {
     if (pumps >= 0) { // interacts with the collect function, which sets pumps to -1, making the button temporarily unclickable
       if (pumps < array_rand.indexOf(1)+1) { // pumping is only clickable until the balloon explodes
 	
 	// what happens 
 	// ...if the balloon explodes
-	if (array_rand[pumps] === 1) { 
+	if (array_rand[pumps] === 1) {
 	  money = 0;
+	  win_lastround = money;
 	  pumps += 1;
-	  $('#pumps').html(pumps+' Mal gepumpt');
-	  $('#money').html('Guthaben: '+money.toFixed(2)+' Euro');
+	  $('#money').html('Guthaben:<br />'+money.toFixed(2)+' Euro');
 	  $('#ballon').fadeOut('slow');
 	  setTimeout(explosion, 1100);
 	  setTimeout(new_round, 3500);
 	}
 	
-	// ...if the money is collected before the balloon explodes
+	// ...if the balloon is pumped
 	else { 
 	  size += increase;
 	  pumps += 1; 
 	  money += 0.05;
 	  $('#ballon').width(size); 
 	  $('#ballon').height(size);
-	  $('#pumps').html(pumps+' Mal gepumpt');
-	  $('#money').html('Guthaben: '+money.toFixed(2)+' Euro'); 
+	  $('#money').html('Guthaben:<br />'+money.toFixed(2)+' Euro'); 
 	}
       }
     }
@@ -109,6 +109,7 @@ $(document).ready(function() {
       if (pumps > 0) { // only works after at least one pump has been made
         pumps = -1; // makes pumping button unclickable until new round starts
         total += money;
+	win_lastround = money;
         money = 0;
         $('#ballon').hide();
         collected();
