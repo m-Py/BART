@@ -13,8 +13,10 @@ $(document).ready(function() {
   var array; // will be used to determine the explosion point of the balloon
   var array_rand; // numbers are drawn from this array; it is filled in the 'new_sequence' function
   
-  $('#press').html('Pumpen'); 
-  $('#collect').html('Geld einsammeln');
+  $('#press').html('Zum Aufpumpen klicken'); 
+  $('#collect_term').html('Guthaben einsammeln:');
+  $('#lastround_term').html('Letzte Runde:');
+  $('#total_term').html('Gesamtguthaben:');
 
   // function to create an array determining the break point of the ballon; balloon explodes when number 1 is drawn from the array
   var new_sequence = function() {
@@ -55,9 +57,9 @@ $(document).ready(function() {
     $('#ballon').height(size);
     $('#ballon').show()
     $('#round').html('<h2>Ballon Spiel Runde '+round+'<h2>');
-    $('#money').html('Guthaben:<br />'+money.toFixed(2)+' Euro');
-    $('#lastround').html('Letzte Runde:<br />'+win_lastround.toFixed(2)+' Euro');
-    $('#total').html('Gesamtguthaben: '+total.toFixed(2)+' Euro');
+    $('#collect_value').html(money.toFixed(2)+' Euro');
+    $('#lastround_value').html(win_lastround.toFixed(2)+' Euro');
+    $('#total_value').html(total.toFixed(2)+' Euro');
   };
   
   
@@ -84,7 +86,6 @@ $(document).ready(function() {
 	  money = 0;
 	  win_lastround = money;
 	  pumps += 1;
-	  $('#money').html('Guthaben:<br />'+money.toFixed(2)+' Euro');
 	  $('#ballon').fadeOut('slow');
 	  setTimeout(explosion, 1100);
 	  setTimeout(new_round, 3500);
@@ -97,7 +98,7 @@ $(document).ready(function() {
 	  money += 0.05;
 	  $('#ballon').width(size); 
 	  $('#ballon').height(size);
-	  $('#money').html('Guthaben:<br />'+money.toFixed(2)+' Euro'); 
+	  $('#collect_value').html(money.toFixed(2)+' Euro'); 
 	}
       }
     }
