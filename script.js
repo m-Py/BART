@@ -29,15 +29,15 @@ $(document).ready(function() {
   
     for (var i = 0; i < array.length; i++) {
       if (array_rand.length === 0) {
-	var rnd = Math.floor(Math.random()*array.length)+1;
-	array_rand.push(rnd);
+        var rnd = Math.floor(Math.random()*array.length)+1;
+        array_rand.push(rnd);
       }
       else if (array_rand.length > 0) {
-	var rnd = Math.floor(Math.random()*array.length)+1;
-	while (array_rand.indexOf(rnd) != -1) { 
-	  var rnd = Math.floor(Math.random()*array.length)+1;
-	}
-	array_rand.push(rnd);
+        var rnd = Math.floor(Math.random()*array.length)+1;
+        while (array_rand.indexOf(rnd) != -1) { 
+          var rnd = Math.floor(Math.random()*array.length)+1;
+        }
+        array_rand.push(rnd);
       }
     }
   };
@@ -48,6 +48,7 @@ $(document).ready(function() {
     round += 1;
     size = start_size;
     pumps = 0;
+    money = 0;
     new_sequence();
     $('#ballon').width(size); 
     $('#ballon').height(size);
@@ -74,26 +75,27 @@ $(document).ready(function() {
   new_round();
   
   $("#press").click(function() {
-    if (pumps < array_rand.indexOf(1)+1) { // pumping is only clickable until the balloon explodes
-      
-      if (array_rand[pumps] === 1) { // what happens if the balloon explodes
-        money = 0;
-        pumps += 1;
-        $('#pumps').html(pumps+' Mal gepumpt');
-        $('#money').html('Guthaben: '+money.toFixed(2)+' Euro');
-        $('#ballon').fadeOut('slow');
-        setTimeout(explosion, 1100);
-        setTimeout(new_round, 3500);
-      }
-      
-      else { // if balloon does not explode
-	size += increase;
-	pumps += 1; 
-	money += 0.05;
-	$('#ballon').width(size); 
-	$('#ballon').height(size);
-	$('#pumps').html(pumps+' Mal gepumpt');
-	$('#money').html('Guthaben: '+money.toFixed(2)+' Euro'); 
+    if (pumps >= 0) {
+      if (pumps < array_rand.indexOf(1)+1) { // pumping is only clickable until the balloon explodes
+	if (array_rand[pumps] === 1) { // what happens if the balloon explodes
+	  money = 0;
+	  pumps += 1;
+	  $('#pumps').html(pumps+' Mal gepumpt');
+	  $('#money').html('Guthaben: '+money.toFixed(2)+' Euro');
+	  $('#ballon').fadeOut('slow');
+	  setTimeout(explosion, 1100);
+	  setTimeout(new_round, 3500);
+	}
+	
+	else { // if balloon does not explode
+	  size += increase;
+	  pumps += 1; 
+	  money += 0.05;
+	  $('#ballon').width(size); 
+	  $('#ballon').height(size);
+	  $('#pumps').html(pumps+' Mal gepumpt');
+	  $('#money').html('Guthaben: '+money.toFixed(2)+' Euro'); 
+	}
       }
     }
   });
@@ -101,10 +103,10 @@ $(document).ready(function() {
   $('#collect').click(function() {
     if (pumps < array_rand.indexOf(1)+1) {
       if (pumps > 0) {
-        pumps = 0;
-	total += money;
-	money = 0;
-	$('#ballon').hide();
+        pumps = -1; // makes pumping button unclickable until new round starts
+        total += money;
+        money = 0;
+        $('#ballon').hide();
         collected();
         setTimeout(new_round, 2000);
       }
