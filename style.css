@@ -4,34 +4,43 @@
   font-size: 135%;
   margin-left: auto;
   margin-right: auto;
+  padding: 8px;
 }
 
 #ballonwrap {
   height: 420px;
+  border: solid black 1px;
+  border-radius: 5px;
 }
 
 #ballon {
   height: 150px;
   width: 150px;
   margin: 0 auto;
-  display:block;
+  display: block;
 }
 
 #lastround, #press, #collect, #total {
-  padding-top: 10px;
   color: #333;
-  padding: 8px;
   border: 1px solid #aaa;
   border-radius: 5px;
   margin: auto;
   text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+}
+
+#press {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 4px;
 }
 
 #collect, #lastround, #total {
   display: table;
   width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #collect_term, #collect_value, #total_term, #total_value, #lastround_term, #lastround_value {
@@ -40,7 +49,7 @@
 }
 
 #collect_term, #lastround_term, #total_term {
-  text-align: left;
+  text-align: right;
 }
 
 
