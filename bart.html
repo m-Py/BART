@@ -7,8 +7,6 @@
 <script src="jquery-1.11.0.min.js"></script>
 <script src="script.js"></script>
 <link rel="stylesheet" href="style.css">
-<script src="jquery-ui.js"></script>
-<link rel="stylesheet" href="jquery-ui.css">
 
 <title>
 BART Task
@@ -16,27 +14,26 @@ BART Task
 
 </head>
 
-<body>
+  <body>
 
+    <div id="bigwrap">
+      <div id="round"></div>
+      <div id="press">Pumpen</div>
 
-<div id="bigwrap">
-  <div id="round"></div>
-  <div id="press">Pumpen</div>
+      <div id="ballonwrap">
+	<div id="explode"></div>
+	<img src="balloon.png" id="ballon" alt="Ballon">
+      </div>
 
-  <div id="ballonwrap">
-    <div id="explode"></div>
-    <img src="balloon.png" id="ballon" alt="Ballon">
-  </div>
+      <div id="progresswrap">
+	<div id="pumps"></div>
+	<div id="money"></div>
+      </div>
+      <div id="collect">Geld einsammeln</div>  
+      <div id="total">Gesamtguthaben: 0.00 Euro</div>
 
-  <div id="pumps"></div>
-  <div id="money"></div>
-  <div id="collect">Geld einsammeln</div>  
-  <div id="total">Gesamtguthaben: 0.00 Euro</div>
+    </div>
 
-</div>
-
-
-
-</body>
+  </body>
 
 </html>
