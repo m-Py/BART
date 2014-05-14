@@ -71,13 +71,15 @@ $(document).ready(function() {
     $('#explode').html('<h2>Das erspielte Geld ist sicher in der Bank.<br />Die nächste Runde startet.</h2>').show().delay(2000).hide(0);
   }
    
-  // start the game!
-  new_round();
-  
+
+  // pump button functionality 
   $("#press").click(function() {
-    if (pumps >= 0) {
+    if (pumps >= 0) { // interacts with the collect function, which sets pumps to -1, making the button temporarily unclickable
       if (pumps < array_rand.indexOf(1)+1) { // pumping is only clickable until the balloon explodes
-	if (array_rand[pumps] === 1) { // what happens if the balloon explodes
+	
+	// what happens 
+	// ...if the balloon explodes
+	if (array_rand[pumps] === 1) { 
 	  money = 0;
 	  pumps += 1;
 	  $('#pumps').html(pumps+' Mal gepumpt');
@@ -87,7 +89,8 @@ $(document).ready(function() {
 	  setTimeout(new_round, 3500);
 	}
 	
-	else { // if balloon does not explode
+	// ...if the money is collected before the balloon explodes
+	else { 
 	  size += increase;
 	  pumps += 1; 
 	  money += 0.05;
@@ -100,9 +103,10 @@ $(document).ready(function() {
     }
   });
 
+  // money collect button functionality
   $('#collect').click(function() {
     if (pumps < array_rand.indexOf(1)+1) {
-      if (pumps > 0) {
+      if (pumps > 0) { // only works after at least one pump has been made
         pumps = -1; // makes pumping button unclickable until new round starts
         total += money;
         money = 0;
@@ -113,5 +117,8 @@ $(document).ready(function() {
     }
   });
 
+  // start the game!
+  new_round();
+  
 });
 
