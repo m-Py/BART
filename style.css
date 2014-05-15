@@ -4,7 +4,6 @@
   font-size: 135%;
   margin-left: auto;
   margin-right: auto;
-  padding: 8px;
 }
 
 #ballonwrap {
@@ -16,22 +15,19 @@
 #ballon {
   height: 130px;
   width: 130px;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: -380px;
 }
 
 #lastround, #press, #collect, #total {
   color: #333;
-  border: 1px solid #aaa;
   border-radius: 5px;
   margin: auto;
   text-align: center;
 }
 
 #press {
-  margin-top: 4px;
   margin-bottom: 4px;
+  margin-top: 4px;
   padding: 4px;
 }
 
