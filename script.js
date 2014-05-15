@@ -3,7 +3,7 @@ $(document).ready(function() {
   // initialize values
   
   var round = 0;
-  var start_size = 130; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
+  var start_size = 140; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
   var increase = 2; // number of pixels by which balloon is increased each pump
   var size; // start_size incremented by 'increase'
   var pumps; 
