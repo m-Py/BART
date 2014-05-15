@@ -14,10 +14,11 @@
 }
 
 #ballon {
-  height: 150px;
-  width: 150px;
-  margin: 0 auto;
-  display: block;
+  height: 130px;
+  width: 130px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -380px;
 }
 
 #lastround, #press, #collect, #total {
@@ -51,7 +52,6 @@
 #collect_term, #lastround_term, #total_term {
   text-align: right;
 }
-
 
 #press, #collect {
   cursor: pointer;
