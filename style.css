@@ -18,26 +18,16 @@
   margin-bottom: -380px;
 }
 
-#lastround, #press, #collect, #total {
-  color: #333;
-  border-radius: 5px;
-  margin: auto;
-  text-align: center;
-}
-
-#press {
-  margin-bottom: 4px;
-  margin-top: 4px;
-  padding: 4px;
-}
-
-#collect, #lastround, #total {
+#collect, #lastround, #total, #press {
   display: table;
   width: 100%;
   margin-top: 4px;
   margin-bottom: 4px;
   padding-top: 4px;
   padding-bottom: 4px;
+  color: #333;
+  border-radius: 5px;
+  text-align: center;
 }
 
 #collect_term, #collect_value, #total_term, #total_value, #lastround_term, #lastround_value {
@@ -56,10 +46,4 @@
 
 #press:hover, #collect:hover {
   background-color: #c2c2c2;
-  border-color: #888;
-  box-shadow: 0 0 2px #ccc;
-}
-
-#press:active, #collect:active {
-  vertical-align: -1px;
 }
