@@ -18,7 +18,7 @@
   margin-bottom: -380px;
 }
 
-#collect, #lastround, #total, #press {
+#lastround, #total, #collect {
   display: table;
   width: 100%;
   margin-top: 4px;
@@ -28,6 +28,11 @@
   color: #333;
   border-radius: 5px;
   text-align: center;
+}
+
+#press {
+  font-size:120%;
+  width: 100%;
 }
 
 #collect_term, #collect_value, #total_term, #total_value, #lastround_term, #lastround_value {
