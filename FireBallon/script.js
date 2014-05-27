@@ -2,6 +2,8 @@
 
 $(document).ready(function() { 
 
+
+  var saveThis = 'text'
   // initialize values
   
   var round = 0;
@@ -11,15 +13,11 @@ $(document).ready(function() {
   var pumps; 
   var total = 0; // money that has been earned in total (in several rounds)
   var money = 0; // money that has been earned in a single round
-  var win_lastround = 0;
-  var array; // will be used to determine the explosion point of the balloon
-  var array_rand; // numbers are drawn from this array; it is filled in the 'new_sequence' function
   
   // initialize language
   
   var label_press = 'Zum Aufpumpen klicken';
   var label_collect = 'Guthaben einsammeln:';
-  var label_lastround = 'Letzte Runde:';
   var label_balance = 'Gesamtguthaben:';
   var label_currency = ' Euro';
   var label_header = 'Ballon Spiel Runde ';
@@ -30,27 +28,26 @@ $(document).ready(function() {
   
   $('#press').html(label_press); 
   $('#collect_term').html(label_collect);
-  $('#lastround_term').html(label_lastround);
   $('#total_term').html(label_balance);
 
   // function to create an array determining the break point of the ballon; balloon explodes when number 1 is drawn from the array
   var new_sequence = function() {
 
-    // create array containing the numbers 1:32; ballon should only explode after 16 pumps
+    // create array containing the numbers 17:32; the number 1 should only be drawable after the first 16 pumps
     array = [];
-    for (var i = 17; i <= 32; i++) { // insert number of maximum pumps here
+    for (var i = 13; i <= 32; i++) { // insert number of maximum pumps here
       array.push(i);
     }
 
-    // randomize array sequence
+    // append numbers 1:16 to existing array
     array_new = array;
     
     array = [];
-    for (var i = 1; i <= 16; i++) { // insert number of maximum pumps here
+    for (var i = 1; i <= 12; i++) { 
       array.push(i);
     }
 
-    // randomize array sequence
+    // randomize array sequence 1:16 and append to array from above
     array_rand = [];
   
     for (var i = 0; i < array.length; i++) {
@@ -66,9 +63,7 @@ $(document).ready(function() {
         array_rand.push(rnd);
       }
     }
-    
-    console.log(array_new);
-    console.log(array_rand);
+
     array_rand = array_new.concat(array_rand);
     console.log(array_rand);
   };
@@ -86,7 +81,6 @@ $(document).ready(function() {
     $('#ballon').show()
     $('#round').html('<h2>'+label_header+round+'<h2>');
     $('#collect_value').html(money.toFixed(2)+label_currency);
-    $('#lastround_value').html(win_lastround.toFixed(2)+label_currency);
     $('#total_value').html(total.toFixed(2)+label_currency);
     $('#fire').css('display', 'block');
   };
@@ -115,7 +109,6 @@ $(document).ready(function() {
 	// ...if the balloon explodes
 	if (array_rand[pumps] === 1) {
 	  money = 0;
-	  win_lastround = money;
 	  pumps += 1;
 	  $('#ballon').fadeOut('slow');
 	  setTimeout(explosion, 1100);
@@ -141,7 +134,6 @@ $(document).ready(function() {
       if (pumps > 0) { // only works after at least one pump has been made
         pumps = -1; // makes pumping button unclickable until new round starts
         total += money;
-	win_lastround = money;
         money = 0;
         $('#ballon').hide();
         collected();
@@ -154,4 +146,3 @@ $(document).ready(function() {
   new_round();
   
 });
-
