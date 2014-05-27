@@ -14,6 +14,13 @@ $(document).ready(function() {
   var total = 0; // money that has been earned in total (in several rounds)
   var money = 0; // money that has been earned in a single round
   
+  // arrays for saving performance
+  // number pumpings each round
+  var number_pumps = [];
+
+  // is balloon exploded
+  var exploded = [];
+  
   // initialize language
   
   var label_press = 'Zum Aufpumpen klicken';
@@ -110,6 +117,10 @@ $(document).ready(function() {
 	if (array_rand[pumps] === 1) {
 	  money = 0;
 	  pumps += 1;
+	  number_pumps.push(pumps);
+	  exploded.push(1);
+	  console.log(number_pumps);
+	  console.log(exploded);
 	  $('#ballon').fadeOut('slow');
 	  setTimeout(explosion, 1100);
 	  setTimeout(new_round, 3500);
@@ -132,6 +143,10 @@ $(document).ready(function() {
   $('#collect').click(function() {
     if (pumps < array_rand.indexOf(1)+1) {
       if (pumps > 0) { // only works after at least one pump has been made
+	number_pumps.push(pumps);
+	exploded.push(0);
+	console.log(number_pumps);
+	console.log(exploded);
         pumps = -1; // makes pumping button unclickable until new round starts
         total += money;
         money = 0;
@@ -146,3 +161,4 @@ $(document).ready(function() {
   new_round();
   
 });
+
