@@ -26,7 +26,8 @@
   margin-bottom: -300px;
 }
 
-#total, #collect {
+
+#total, #collect{
   display: table;
   width: 100%;
   margin-top: 4px;
@@ -38,7 +39,7 @@
   text-align: center;
 }
 
-#press {
+#press, #goOn {
   font-size:120%;
   width: 100%;
 }
@@ -57,6 +58,10 @@
   background: #ddd;
 }
 
-#press:hover, #collect:hover {
+#press:hover, #collect:hover, #goOn:hover {
   background-color: #c2c2c2;
+}
+
+#goOn {
+  display: none;
 }

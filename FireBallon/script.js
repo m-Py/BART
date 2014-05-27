@@ -78,18 +78,32 @@ $(document).ready(function() {
 
   // what happens when a new round starts
   var new_round = function() {
-    round += 1;
-    size = start_size;
-    pumps = 0;
-    money = 0;
-    new_sequence();
-    $('#ballon').width(size); 
-    $('#ballon').height(size);
-    $('#ballon').show()
-    $('#round').html('<h2>'+label_header+round+'<h2>');
-    $('#collect_value').html(money.toFixed(2)+label_currency);
-    $('#total_value').html(total.toFixed(2)+label_currency);
-    $('#fire').css('display', 'block');
+      round += 1;
+      size = start_size;
+      pumps = 0;
+      money = 0;
+      new_sequence();
+      $('#ballon').width(size); 
+      $('#ballon').height(size);
+      $('#ballon').show()
+      $('#round').html('<h2>'+label_header+round+'<h2>');
+      $('#collect_value').html(money.toFixed(2)+label_currency);
+      $('#total_value').html(total.toFixed(2)+label_currency);
+      $('#fire').css('display', 'block');
+  };
+  
+  // what happens when the game ends
+  var end_game = function() {
+    $('#fire').remove();
+    $('#total').remove();
+    $('#collect').remove();
+    $('#ballon').remove();
+    $('#press').remove();
+    $('#round').html('<h2>Das Spiel ist vorbei!</h2>');
+    $('#goOn').show();
+    $('#message').html('<h3>Herzlichen Glückwunsch!</h3> <p>Sie haben im Ballon-Spiel '+total.toFixed(2)+' Euro Gewinn gemacht! Bevor das Quiz startet, bitten wir Sie noch die folgenden drei Skalen auszufüllen.</p><p>Klicken Sie auf <i>Spiel beenden</i>, um zu den Skalen zu gelangen.</p>').show();
+    $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
+    $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
   };
   
   
@@ -123,7 +137,12 @@ $(document).ready(function() {
 	  console.log(exploded);
 	  $('#ballon').fadeOut('slow');
 	  setTimeout(explosion, 1100);
-	  setTimeout(new_round, 3500);
+	  if (round < 3) {
+	    setTimeout(new_round, 3500);
+	  }
+	  else {
+	    setTimeout(end_game, 3500);
+	  }
 	}
 	
 	// ...if the balloon is pumped
@@ -152,11 +171,22 @@ $(document).ready(function() {
         money = 0;
         $('#ballon').hide();
         collected();
-        setTimeout(new_round, 2000);
+        if (round < 3) {
+	  setTimeout(new_round, 2000);
+	}
+	else {
+	  setTimeout(end_game, 2000);
+	}
       }
     }
   });
 
+  
+  // continue button
+  $("#goOn").click(function() {
+    $("form[name=f1]").submit();
+  });
+  
   // start the game!
   new_round();
   
