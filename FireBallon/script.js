@@ -3,7 +3,7 @@
 $(document).ready(function() { 
 
 
-  var saveThis = 'text'
+  var saveThis = 'hidden'
   // initialize values
   
   var round = 0;
@@ -72,7 +72,6 @@ $(document).ready(function() {
     }
 
     array_rand = array_new.concat(array_rand);
-    console.log(array_rand);
   };
 
 
@@ -99,9 +98,9 @@ $(document).ready(function() {
     $('#collect').remove();
     $('#ballon').remove();
     $('#press').remove();
-    $('#round').html('<h2>Das Spiel ist vorbei!</h2>');
+    $('#round').html('<h2>Herzlichen Glückwunsch!</h2>');
     $('#goOn').show();
-    $('#message').html('<h3>Herzlichen Glückwunsch!</h3> <p>Sie haben im Ballon-Spiel '+total.toFixed(2)+' Euro Gewinn gemacht! Bevor das Quiz startet, bitten wir Sie noch die folgenden drei Skalen auszufüllen.</p><p>Klicken Sie auf <i>Spiel beenden</i>, um zu den Skalen zu gelangen.</p>').show();
+ $('#message').html('<p>Sie haben im Ballon Spiel '+total.toFixed(2)+' Euro Gewinn gemacht! Bevor im Folgenden das Quiz startet, bitten wir Sie zunächst noch die folgenden drei Skalen auszufüllen.</p><p>Klicken Sie auf <i>Spiel beenden</i>, um zu den Skalen zu gelangen.</p>').show();
     $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
     $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
   };
@@ -133,8 +132,6 @@ $(document).ready(function() {
 	  pumps += 1;
 	  number_pumps.push(pumps);
 	  exploded.push(1);
-	  console.log(number_pumps);
-	  console.log(exploded);
 	  $('#ballon').fadeOut('slow');
 	  setTimeout(explosion, 1100);
 	  if (round < 3) {
@@ -164,8 +161,6 @@ $(document).ready(function() {
       if (pumps > 0) { // only works after at least one pump has been made
 	number_pumps.push(pumps);
 	exploded.push(0);
-	console.log(number_pumps);
-	console.log(exploded);
         pumps = -1; // makes pumping button unclickable until new round starts
         total += money;
         money = 0;
@@ -191,4 +186,3 @@ $(document).ready(function() {
   new_round();
   
 });
-
