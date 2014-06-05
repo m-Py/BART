@@ -1,0 +1,111 @@
+body {
+  font-family: Arial;
+}
+
+#round {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 135%;
+}
+
+#bigbigwrap {
+  width: 650px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#bigwrap {
+  text-align: center;
+  width: 550px;
+  font-size: 135%;
+  margin-left: auto;
+  margin-right: auto;
+  float: right;
+}
+
+#sliderwrap {
+  height: 420px;
+  float: left;
+}
+
+#showValue {
+  margin-top: 200px;
+  text-align: right;
+}
+
+#slider {
+  height:150px;
+  float: right;
+  margin-top: 10px;
+  background-color: #9DE0AD;
+}
+
+
+.ui-state-disabled {
+   opacity: 1;
+}
+
+.ui-slider-handle {
+  text-align:center;
+  text-decoration: none;
+}
+
+.ui-slider-range { 
+  background-image:none;
+  background-color: #D2691E; 
+}
+
+
+#ballonwrap {
+  height: 420px;
+  border: solid black 1px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#ballon {
+  height: 150px;
+  width: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: -380px;
+}
+
+
+#total {
+  display: table;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#press, #goOn, #collect {
+  font-size:110%;
+  width: 100%;
+}
+
+#total_term, #total_value {
+  display: table-cell;
+  width: 50%;
+}
+
+#total_term {
+  text-align: right;
+}
+
+#press, #collect, #goOn {
+  cursor: pointer;
+  background: #ddd;
+}
+
+#press:hover, #collect:hover, #goOn:hover {
+  background-color: #c2c2c2;
+}
+
+#goOn {
+  display: none;
+}
