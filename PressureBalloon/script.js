@@ -31,8 +31,8 @@ $(document).ready(function() {
   var label_balance = 'Gesamtguthaben:';
   var label_currency = ' Taler';
   var label_header = 'Ballon Spiel Runde ';
-  var msg_explosion = '<h2>Der Ballon ist explodiert! Sie verdienen diese Runde kein Geld.<br />Die nächste Runde startet.</h2>';
-  var msg_collect = '<h2>Das erspielte Geld ist sicher in der Bank.<br />Die nächste Runde startet.</h2>';
+  var msg_explosion = '<div style="font-size:140%; margin-top:30px"><strong><p>Der Ballon ist explodiert! Sie verdienen diese Runde kein Geld.</p><p>Die nächste Runde startet.</p></strong></div>';
+  var msg_collect = '<div style="font-size:140%; margin-top:30px"><strong><p>Das erspielte Geld ist sicher in der Bank.</p><p>Die nächste Runde startet.</p></strong></div>';
   var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
   var msg_end1 = '<div style="margin-top:30px"><p>Sie haben im Ballon Spiel ';
   var msg_end2 = ' Taler Gewinn gemacht! Bevor das abschließende Quiz startet, bitten wir Sie zunächst noch einige Fragen zu beantworten.</p><p>Klicken Sie auf <i>Weiter</i>, um forzufahren.</p></div>';
@@ -42,6 +42,7 @@ $(document).ready(function() {
   $('#press').html(label_press); 
   $('#collect').html(label_collect);
   $('#total_term').html(label_balance);
+  $('#total_value').html(total+label_currency);
 
   // function to create an array determining the break point of the ballon; balloon explodes when number 1 is drawn from the array
   var new_sequence = function() {
@@ -82,7 +83,6 @@ $(document).ready(function() {
       $('#ballon').height(size);
       $('#ballon').show()
       $('#round').html('<h2>'+label_header+round+'<h2>');
-      $('#total_value').html(total+label_currency);
   };
   
   // what happens when the game ends
@@ -125,6 +125,11 @@ $(document).ready(function() {
     $('#ballon').hide( "explode", {pieces: 48}, 1000 );
   };
   
+  // add money to bank
+  var increase_value = function() {
+    $('#total_value').html(total+label_currency);
+  };
+  
   // release pressure and hope for money
   $('#collect').click(function() {
       if (pumps > 0) { // only works after at least one pump has been made
@@ -140,17 +145,17 @@ $(document).ready(function() {
 	  }
 	}
 	//determine animation speed; faster for smaller balloons
-        if (i < 3) {
+        if (i < 4) {
 	  var animate_speed = 200;
-        } else if (i < 6) {
+        } else if (i < 7) {
 	  var animate_speed = 300;
-	} else if (i < 11) {
+	} else if (i < 12) {
 	  var animate_speed = 400;
-	} else if (i < 16) {
+	} else if (i < 17) {
 	  var animate_speed = 500;
-        } else if (i < 21) {
+        } else if (i < 22) {
 	  var animate_speed = 600;
-	} else if (i < 26) {
+	} else if (i < 27) {
 	  var animate_speed = 700;
 	} else { 
 	  var animate_speed = 800; 
@@ -178,6 +183,7 @@ $(document).ready(function() {
 	else {
 	  total += pumpmeup
 	  setTimeout(collected_message, animate_speed+1000);
+	  setTimeout(increase_value, animate_speed+1000);
 	  if (round < rounds_played) {
 	    setTimeout(new_round, animate_speed+3000);
 	  }

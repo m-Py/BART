@@ -1,5 +1,6 @@
 body {
   font-family: Arial;
+  font-size: 110%;
 }
 
 #round {
@@ -23,6 +24,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   float: right;
+  margin-top: 15px;
+
 }
 
 #sliderwrap {
@@ -63,6 +66,7 @@ body {
   border: solid black 1px;
   border-radius: 5px;
   width: 100%;
+  background: #fff;
 }
 
 #ballon {
@@ -81,6 +85,8 @@ body {
   margin-bottom: 4px;
   padding-top: 4px;
   padding-bottom: 4px;
+  background: #fff;
+  border-radius: 5px;
 }
 
 #press, #goOn, #collect {
