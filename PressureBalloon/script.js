@@ -12,9 +12,8 @@ $(document).ready(function() {
   var size; // start_size incremented by 'increase'
   var pumps; 
   var total = 0; // money that has been earned in total
-  var rounds_played = 5;
-  var array;
-  var array_rand;
+  var rounds_played = 6;
+  var explode_array;
   var maximal_pumps = 30;
   
   // arrays for saving performance
@@ -44,32 +43,8 @@ $(document).ready(function() {
   $('#total_term').html(label_balance);
   $('#total_value').html(total+label_currency);
 
-  // function to create an array determining the break point of the ballon; balloon explodes when number 1 is drawn from the array
-  var new_sequence = function() {
-
-    // create array containing the numbers 1:30
-    array = [];
-    for (var i = 1; i <= maximal_pumps; i++) { // insert number of maximum pumps here
-      array.push(i);
-    }
-
-    // randomize array sequence
-    array_rand = [];
-  
-    for (var i = 0; i < array.length; i++) {
-      if (array_rand.length === 0) {
-        var rnd = Math.floor(Math.random()*array.length)+1;
-        array_rand.push(rnd);
-      }
-      else if (array_rand.length > 0) {
-        var rnd = Math.floor(Math.random()*array.length)+1;
-        while (array_rand.indexOf(rnd) != -1) { 
-          var rnd = Math.floor(Math.random()*array.length)+1;
-        }
-        array_rand.push(rnd);
-      }
-    }
-  };
+  // create an array that determens the break point of the ballon for each round
+  explode_array = [17, 13, 5, 25, 20, 10];
 
 
   // what happens when a new round starts
@@ -77,8 +52,7 @@ $(document).ready(function() {
       round += 1;
       size = start_size;
       pumps = 0;
-      new_sequence();
-      console.log(array_rand);
+      console.log(explode_array[round-1]);
       $('#ballon').width(size); 
       $('#ballon').height(size);
       $('#ballon').show()
@@ -139,8 +113,8 @@ $(document).ready(function() {
 	pumps = -1; // makes pumping button unclickable until new round starts
 	for (var i = 0; i < pumpmeup; i++) {
 	  size += increase;
-	  if (array_rand[i] === 1) { 
-	    var explosion = 1; // when pumping goes beyond explosion point !
+	  if (i === explode_array[round-1]-1) { // -> insert explosion criterion here
+	    var explosion = 1; 
 	    break; // break loop when explosion point is reached; balloon will not get pumped any further!
 	  }
 	}
@@ -194,6 +168,7 @@ $(document).ready(function() {
 	console.log(number_pumps);	
 	exploded.push(explosion); // save whether balloon has exploded or not
 	console.log(exploded);
+	console.log(i);
       }
   });
   
