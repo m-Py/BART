@@ -13,7 +13,7 @@ $(document).ready(function() {
   var pumps; 
   var total = 0; // money that has been earned in total
   var rounds_played = 6;
-  var explode_array;
+  var explode_array = [23, 13, 10, 17, 20, 7];
   var maximal_pumps = 30;
   
   // arrays for saving performance
@@ -42,9 +42,7 @@ $(document).ready(function() {
   $('#collect').html(label_collect);
   $('#total_term').html(label_balance);
   $('#total_value').html(total+label_currency);
-
-  // create an array that determens the break point of the ballon for each round
-  explode_array = [17, 13, 5, 25, 20, 10];
+  
 
 
   // what happens when a new round starts
