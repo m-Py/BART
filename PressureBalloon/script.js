@@ -22,19 +22,19 @@ $(document).ready(function() {
   
   // initialize language
   var label_press = 'Druck in der Zuleitung erhöhen';
-  var label_collect = 'Ballon aufpumpen';
+  var label_collect = 'Ballon mit Luft aus Zuleitung aufpumpen';
   var label_balance = 'Gesamtguthaben:';
   var label_currency = ' Taler';
-  var label_header = 'Ballon Spiel Runde ';
+  var label_header = 'Ballon-Spiel Runde ';
   var label_gonext1 = 'Nächste Runde starten';
   var label_gonext2 = 'Spiel beenden';
   var msg_1 = '<div style="font-size:120%; margin-top:30px"><p>Sie haben in dieser Runde ';
   var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon hat diese Runde jedoch nur  '
-  var msg_explosion3 = ' Druckerhöhungen ausgehalten und ist explodiert! Sie verdienen diese Runde kein Geld.</p></div>';
-  var msg_collect2 = ' Mal den Druck erhöht, ohne, dass der Ballon explodiert ist. Sie haben ';
+  var msg_explosion3 = ' Druckerhöhungen ausgehalten und ist explodiert!</p><p>Sie verdienen diese Runde kein Geld.</p></div>';
+  var msg_collect2 = ' Mal den Druck erhöht, ohne, dass der Ballon explodiert ist.</p><p>Sie haben ';
   var msg_collect3 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p></div>';
   var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
-  var msg_end1 = '<div style="margin-top:30px"><p>Sie haben im Ballon Spiel ';
+  var msg_end1 = '<div style="margin-top:30px"><p>Sie haben im Ballon-Spiel ';
   var msg_end2 = ' Taler Gewinn gemacht! Bevor das abschließende Quiz startet, bitten wir Sie zunächst noch einige Fragen zu beantworten.</p><p>Klicken Sie auf <i>Weiter</i>, um forzufahren.</p></div>';
   
   
@@ -78,7 +78,7 @@ $(document).ready(function() {
   
   // message shown if balloon explodes
   var explosion_message = function() {
-    $('#message').html(msg_1+pumpmeup+msg_explosion2+explode_array[round-1]+msg_explosion3).show();
+    $('#message').html(msg_1+pumpmeup+msg_explosion2+(explode_array[round-1]-1)+msg_explosion3).show();
   };
   
   // message shown if balloon does not explode
