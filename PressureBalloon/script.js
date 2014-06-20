@@ -13,47 +13,51 @@ $(document).ready(function() {
   var pumps; 
   var total = 0; // money that has been earned in total
   var rounds_played = 6;
-  var explode_array = [23, 13, 10, 17, 20, 7];
+  var explode_array = [17, 11, 23, 14, 8, 20];
   var maximal_pumps = 30;
+  var pumpmeup; // number pumps in a given round
+  var number_pumps = []; // arrays for saving number of pumps
+  var exploded = []; // array for saving whether ballon has exploded
   
-  // arrays for saving performance
-  // number pumpings each round
-  var number_pumps = [];
-
-  // is balloon exploded
-  var exploded = [];
   
   // initialize language
-  
   var label_press = 'Druck in der Zuleitung erhöhen';
   var label_collect = 'Ballon aufpumpen';
   var label_balance = 'Gesamtguthaben:';
   var label_currency = ' Taler';
   var label_header = 'Ballon Spiel Runde ';
-  var msg_explosion = '<div style="font-size:140%; margin-top:30px"><strong><p>Der Ballon ist explodiert! Sie verdienen diese Runde kein Geld.</p><p>Die nächste Runde startet.</p></strong></div>';
-  var msg_collect = '<div style="font-size:140%; margin-top:30px"><strong><p>Das erspielte Geld ist sicher in der Bank.</p><p>Die nächste Runde startet.</p></strong></div>';
+  var label_gonext1 = 'Nächste Runde starten';
+  var label_gonext2 = 'Spiel beenden';
+  var msg_1 = '<div style="font-size:120%; margin-top:30px"><p>Sie haben in dieser Runde ';
+  var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon hat diese Runde jedoch nur  '
+  var msg_explosion3 = ' Druckerhöhungen ausgehalten und ist explodiert! Sie verdienen diese Runde kein Geld.</p></div>';
+  var msg_collect2 = ' Mal den Druck erhöht, ohne, dass der Ballon explodiert ist. Sie haben ';
+  var msg_collect3 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p></div>';
   var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
   var msg_end1 = '<div style="margin-top:30px"><p>Sie haben im Ballon Spiel ';
   var msg_end2 = ' Taler Gewinn gemacht! Bevor das abschließende Quiz startet, bitten wir Sie zunächst noch einige Fragen zu beantworten.</p><p>Klicken Sie auf <i>Weiter</i>, um forzufahren.</p></div>';
   
-  // initialize labels
   
+  // initialize labels
   $('#press').html(label_press); 
   $('#collect').html(label_collect);
   $('#total_term').html(label_balance);
   $('#total_value').html(total+label_currency);
   
-
-
+  
+  // below: functions that define functionality of the game
+  
   // what happens when a new round starts
   var new_round = function() {
+      $('#gonext').hide();
+      $('#message').hide();  
       round += 1;
       size = start_size;
       pumps = 0;
       console.log(explode_array[round-1]);
       $('#ballon').width(size); 
       $('#ballon').height(size);
-      $('#ballon').show()
+      $('#ballon').show();
       $('#round').html('<h2>'+label_header+round+'<h2>');
   };
   
@@ -64,6 +68,7 @@ $(document).ready(function() {
     $('#collect').remove();
     $('#ballon').remove();
     $('#press').remove();
+    $('#gonext').remove();
     $('#round').html(end_gratz);
     $('#goOn').show();
     $('#message').html(msg_end1+total+msg_end2).show();
@@ -71,19 +76,40 @@ $(document).ready(function() {
     $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
   };
   
-  
-  // ... message shown if balloon explodes
+  // message shown if balloon explodes
   var explosion_message = function() {
-    $('#message').html(msg_explosion).show().delay(2000).hide(0);
+    $('#message').html(msg_1+pumpmeup+msg_explosion2+explode_array[round-1]+msg_explosion3).show();
   };
   
-  // ... message shown if balloon does not explode
+  // message shown if balloon does not explode
   var collected_message = function() {
-    $('#ballon').hide();
-    $('#message').html(msg_collect).show().delay(2000).hide(0);
-  };
-   
+    $('#message').html(msg_1+pumpmeup+msg_collect2+pumpmeup+msg_collect3).show();
+  };  
 
+  // animate explosion using jQuery UI explosion
+  var balloon_explode = function() {
+    $('#ballon').hide( "explode", {pieces: 48}, 1000 );
+  };  
+  
+  // show button that starts next round
+  var gonext_message = function() {
+    $('#ballon').hide();
+    if (round < rounds_played) {
+      $('#gonext').html(label_gonext1).show();
+    }
+    else {
+      $('#gonext').html(label_gonext2).show();
+    }
+  };
+
+  // add money to bank
+  var increase_value = function() {
+    $('#total_value').html(total+label_currency);
+  };
+  
+  
+  // button functionalities
+  
   // pump button functionality -> 'pressure' in slider bar increases
   $('#press').click(function() {
     if (pumps >= 0 && pumps < maximal_pumps) { // interacts with the collect function, which sets pumps to -1, making the button temporarily unclickable
@@ -92,22 +118,27 @@ $(document).ready(function() {
     }
   });
   
-  // animate explosion
-  var balloon_explode = function() {
-    $('#ballon').hide( "explode", {pieces: 48}, 1000 );
-  };
+  // click this button to start the next round
+  $('#gonext').click(function() {
+    if (round < rounds_played) {
+      new_round();
+    }
+    else {
+      end_game();
+    }
+  });  
+
+  // continue button that is shown when the game has ended
+  $("#goOn").click(function() {
+    $("form[name=f1]").submit();
+  });
   
-  // add money to bank
-  var increase_value = function() {
-    $('#total_value').html(total+label_currency);
-  };
-  
-  // release pressure and hope for money
+  // collect button: release pressure and hope for money
   $('#collect').click(function() {
       if (pumps > 0) { // only works after at least one pump has been made
 	var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
 	number_pumps.push(pumps); // save number of pumps
-	var pumpmeup = pumps
+	pumpmeup = pumps
 	pumps = -1; // makes pumping button unclickable until new round starts
 	for (var i = 0; i < pumpmeup; i++) {
 	  size += increase;
@@ -144,24 +175,15 @@ $(document).ready(function() {
 	if (explosion === 1) {
 	  setTimeout(balloon_explode, animate_speed);
 	  setTimeout(explosion_message, animate_speed+1400);
-	  if (round < rounds_played) {
-	    setTimeout(new_round, animate_speed+3400);
-	  }
-	  else {
-	    setTimeout(end_game, animate_speed+3500);
-	  }
+	  setTimeout(gonext_message, animate_speed+1400);
 	}
 	// handle no explosion
 	else {
 	  total += pumpmeup
 	  setTimeout(collected_message, animate_speed+1000);
 	  setTimeout(increase_value, animate_speed+1000);
-	  if (round < rounds_played) {
-	    setTimeout(new_round, animate_speed+3000);
-	  }
-	  else {
-	    setTimeout(end_game, animate_speed+3100);
-	  }
+	  setTimeout(gonext_message, animate_speed+1000);
+
 	}
 	console.log(number_pumps);	
 	exploded.push(explosion); // save whether balloon has exploded or not
@@ -172,6 +194,7 @@ $(document).ready(function() {
   
   
   // initialize slider that handles the pumps
+  
   $( "#slider" ).slider( {
     orientation: "vertical",
     value: 0,
@@ -189,11 +212,6 @@ $(document).ready(function() {
     range: "min",
   });
   
-  
-  // continue button is shown when the game ends
-  $("#goOn").click(function() {
-    $("form[name=f1]").submit();
-  });
   
   // start the game!
   new_round();

@@ -10,6 +10,11 @@ body {
   font-size: 135%;
 }
 
+#round h2 {
+  margin-bottom: 0px;
+  padding: 1px;
+}
+
 #bigbigwrap {
   width: 650px;
   text-align: center;
@@ -112,6 +117,16 @@ body {
   background-color: #c2c2c2;
 }
 
+#gonext {
+  border: 1px solid black;
+  font-size: 140%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 #goOn {
   display: none;
 }
+
+
+
