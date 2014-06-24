@@ -28,13 +28,13 @@ $(document).ready(function() {
   var label_gonext1 = 'Nächste Runde starten';
   var label_gonext2 = 'Spiel beenden';
   var msg_1 = '<div style="font-size:120%; margin-top:30px"><p>Sie haben in dieser Runde ';
-  var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon ist jedoch schon nach der  ';
-  var msg_explosion3 = '. Druckerhöhung explodiert!</p><p>Sie verdienen diese Runde kein Geld.</p></div>';
+  var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon ist jedoch schon nach der Luftzufuhr aus ';
+  var msg_explosion3 = ' Druckerhöhungen zum Platzen gebracht worden!</p><p>Sie verdienen diese Runde kein Geld.</p></div>';
   var msg_collect2 = ' Mal den Druck erhöht, ohne dass der Ballon explodiert ist.</p><p>Sie haben ';
   var msg_collect3 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p></div>';
   var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
   var msg_end1 = '<div style="margin-top:30px"><p>Sie haben im Ballon-Spiel ';
-  var msg_end2 = ' Taler Gewinn gemacht! Bevor das abschließende Quiz startet, bitten wir Sie zunächst noch einige Fragen zu beantworten.</p><p>Klicken Sie auf <i>Weiter</i>, um forzufahren.</p></div>';
+  var msg_end2 = ' Taler Gewinn gemacht! </p><p>Klicken Sie auf <i>Weiter</i>, um mit der Studie forzufahren.</p></div>';
   
   
   // initialize labels
@@ -44,22 +44,22 @@ $(document).ready(function() {
   $('#total_value').html(total+label_currency);
   
   
-  // below: functions that define functionality of the game
+  // below: create functions that define game functionality
   
   // what happens when a new round starts
   var new_round = function() {
-      $('#gonext').hide();
-      $('#message').hide();  
-      $('#collect').show();
-      $('#press').show();
-      round += 1;
-      size = start_size;
-      pumps = 0;
-      console.log(explode_array[round-1]);
-      $('#ballon').width(size); 
-      $('#ballon').height(size);
-      $('#ballon').show();
-      $('#round').html('<h2>'+label_header+round+'<h2>');
+    $('#gonext').hide();
+    $('#message').hide();  
+    $('#collect').show();
+    $('#press').show();
+    round += 1;
+    size = start_size;
+    pumps = 0;
+//  console.log(explode_array[round-1]);
+    $('#ballon').width(size); 
+    $('#ballon').height(size);
+    $('#ballon').show();
+    $('#round').html('<h2>'+label_header+round+'<h2>');
   };
   
   // what happens when the game ends
@@ -189,10 +189,10 @@ $(document).ready(function() {
 	  setTimeout(increase_value, animate_speed+1000);
 	  setTimeout(gonext_message, animate_speed+1000);
 	}
-	console.log(number_pumps);	
+	// console.log(number_pumps);	
 	exploded.push(explosion); // save whether balloon has exploded or not
-	console.log(exploded);
-	console.log(i);
+	// console.log(exploded);
+	// console.log(i);
       }
   });
   
