@@ -2,8 +2,7 @@
 
 $(document).ready(function() { 
 
-
-  var saveThis = 'hidden';
+  var saveThis = 'hidden'; // text fields that save data should not be shown; can be shown in testing
   
   // initialize values
   var round = 0;
@@ -29,9 +28,9 @@ $(document).ready(function() {
   var label_gonext1 = 'Nächste Runde starten';
   var label_gonext2 = 'Spiel beenden';
   var msg_1 = '<div style="font-size:120%; margin-top:30px"><p>Sie haben in dieser Runde ';
-  var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon hat diese Runde jedoch nur  '
-  var msg_explosion3 = ' Druckerhöhungen ausgehalten und ist explodiert!</p><p>Sie verdienen diese Runde kein Geld.</p></div>';
-  var msg_collect2 = ' Mal den Druck erhöht, ohne, dass der Ballon explodiert ist.</p><p>Sie haben ';
+  var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon ist jedoch schon nach der  ';
+  var msg_explosion3 = '. Druckerhöhung explodiert!</p><p>Sie verdienen diese Runde kein Geld.</p></div>';
+  var msg_collect2 = ' Mal den Druck erhöht, ohne dass der Ballon explodiert ist.</p><p>Sie haben ';
   var msg_collect3 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p></div>';
   var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
   var msg_end1 = '<div style="margin-top:30px"><p>Sie haben im Ballon-Spiel ';
@@ -51,6 +50,8 @@ $(document).ready(function() {
   var new_round = function() {
       $('#gonext').hide();
       $('#message').hide();  
+      $('#collect').show();
+      $('#press').show();
       round += 1;
       size = start_size;
       pumps = 0;
@@ -78,11 +79,15 @@ $(document).ready(function() {
   
   // message shown if balloon explodes
   var explosion_message = function() {
-    $('#message').html(msg_1+pumpmeup+msg_explosion2+(explode_array[round-1]-1)+msg_explosion3).show();
+    $('#collect').hide();
+    $('#press').hide();
+    $('#message').html(msg_1+pumpmeup+msg_explosion2+explode_array[round-1]+msg_explosion3).show();
   };
   
   // message shown if balloon does not explode
   var collected_message = function() {
+    $('#collect').hide();
+    $('#press').hide();    
     $('#message').html(msg_1+pumpmeup+msg_collect2+pumpmeup+msg_collect3).show();
   };  
 
@@ -118,7 +123,7 @@ $(document).ready(function() {
     }
   });
   
-  // click this button to start the next round
+  // click this button to start the next round (or end game when all rounds are played)
   $('#gonext').click(function() {
     if (round < rounds_played) {
       new_round();
@@ -138,7 +143,7 @@ $(document).ready(function() {
       if (pumps > 0) { // only works after at least one pump has been made
 	var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
 	number_pumps.push(pumps); // save number of pumps
-	pumpmeup = pumps
+	pumpmeup = pumps;
 	pumps = -1; // makes pumping button unclickable until new round starts
 	for (var i = 0; i < pumpmeup; i++) {
 	  size += increase;
@@ -179,11 +184,10 @@ $(document).ready(function() {
 	}
 	// handle no explosion
 	else {
-	  total += pumpmeup
+	  total += pumpmeup;
 	  setTimeout(collected_message, animate_speed+1000);
 	  setTimeout(increase_value, animate_speed+1000);
 	  setTimeout(gonext_message, animate_speed+1000);
-
 	}
 	console.log(number_pumps);	
 	exploded.push(explosion); // save whether balloon has exploded or not
