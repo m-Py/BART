@@ -5,6 +5,13 @@
   font-size: 135%;
 }
 
+#message {
+  margin-top: 20px;
+  padding: 10px;
+  line-height: 1.3;
+  font-size: 110%;
+}
+
 #round h2 {
   margin-bottom: 0px;
   padding: 1px;
