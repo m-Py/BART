@@ -27,14 +27,14 @@ $(document).ready(function() {
   var label_header = 'Ballon-Spiel Runde ';
   var label_gonext1 = 'Nächste Runde starten';
   var label_gonext2 = 'Spiel beenden';
-  var msg_1 = '<div style="font-size:120%; margin-top:30px"><p>Sie haben in dieser Runde ';
-  var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon ist jedoch schon nach der Luftzufuhr aus ';
-  var msg_explosion3 = ' Druckerhöhungen zum Platzen gebracht worden!</p><p>Sie verdienen diese Runde kein Geld.</p></div>';
+  var msg_1 = '<p>Sie haben in dieser Runde ';
+  var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon ist jedoch schon nach ';
+  var msg_explosion3 = ' Druckerhöhungen geplatzt!</p><p>Sie verdienen diese Runde also kein Geld.</p>';
   var msg_collect2 = ' Mal den Druck erhöht, ohne dass der Ballon explodiert ist.</p><p>Sie haben ';
-  var msg_collect3 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p></div>';
+  var msg_collect3 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p>';
   var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
-  var msg_end1 = '<div style="margin-top:30px"><p>Sie haben im Ballon-Spiel ';
-  var msg_end2 = ' Taler Gewinn gemacht! </p><p>Klicken Sie auf <i>Weiter</i>, um mit der Studie forzufahren.</p></div>';
+  var msg_end1 = '<p>Sie haben im Ballon-Spiel ';
+  var msg_end2 = ' Taler Gewinn gemacht! </p><p>Klicken Sie auf <i>Weiter</i>, um mit dem Persönlichkeitstest, dem Wortschatztest und dem Quiz fortzufahren.</p>';
   
   
   // initialize labels
