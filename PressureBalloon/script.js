@@ -12,7 +12,7 @@ $(document).ready(function() {
   var pumps; 
   var total = 0; // money that has been earned in total
   var rounds_played = 6;
-  var explode_array = [17, 11, 23, 14, 8, 20];
+  var explode_array =  [17, 10, 23, 13, 7, 20];
   var maximal_pumps = 30;
   var pumpmeup; // number pumps in a given round
   var number_pumps = []; // arrays for saving number of pumps
@@ -29,12 +29,13 @@ $(document).ready(function() {
   var label_gonext2 = 'Spiel beenden';
   var msg_1 = '<p>Sie haben in dieser Runde ';
   var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon ist jedoch schon nach ';
-  var msg_explosion3 = ' Druckerhöhungen geplatzt!</p><p>Sie verdienen diese Runde also kein Geld.</p>';
-  var msg_collect2 = ' Mal den Druck erhöht, ohne dass der Ballon explodiert ist.</p><p>Sie haben ';
-  var msg_collect3 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p>';
+  var msg_explosion3 = ' Druckerhöhungen geplatzt!</p><p>Sie haben in dieser Runde kein Geld verdient.</p>';
+  var msg_collect2 = ' Mal den Druck erhöht, ohne dass der Ballon explodiert ist. Der Ballon wäre in dieser Runde erst nach '
+  var msg_collect3 = ' Druckerhöhungen explodiert.</p><p>Sie haben ';
+  var msg_collect4 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p>';
   var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
   var msg_end1 = '<p>Sie haben im Ballon-Spiel ';
-  var msg_end2 = ' Taler Gewinn gemacht! </p><p>Klicken Sie auf <i>Weiter</i>, um mit dem Persönlichkeitstest, dem Wortschatztest und dem Quiz fortzufahren.</p>';
+  var msg_end2 = ' Taler Gewinn gemacht! </p><p>Klicken Sie auf <i>Weiter</i>, um mit dem <strong>Persönlichkeitstest</strong>, dem <strong>Wortschatztest</strong> und dem <strong>Quiz</strong> fortzufahren.</p>';
   
   
   // initialize labels
@@ -88,7 +89,7 @@ $(document).ready(function() {
   var collected_message = function() {
     $('#collect').hide();
     $('#press').hide();    
-    $('#message').html(msg_1+pumpmeup+msg_collect2+pumpmeup+msg_collect3).show();
+    $('#message').html(msg_1+pumpmeup+msg_collect2+explode_array[round-1]+msg_collect3+pumpmeup+msg_collect4).show();
   };  
 
   // animate explosion using jQuery UI explosion
@@ -148,7 +149,7 @@ $(document).ready(function() {
 	for (var i = 0; i < pumpmeup; i++) {
 	  size += increase;
 	  if (i === explode_array[round-1]-1) { // -> insert explosion criterion here
-	    var explosion = 1; 
+	    explosion = 1; 
 	    break; // break loop when explosion point is reached; balloon will not get pumped any further!
 	  }
 	}
