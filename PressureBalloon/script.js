@@ -31,11 +31,10 @@ $(document).ready(function() {
   var msg_explosion2 = ' Mal den Druck erhöht. Der Ballon ist jedoch schon nach ';
   var msg_explosion3 = ' Druckerhöhungen geplatzt!</p><p>Sie haben in dieser Runde kein Geld verdient.</p>';
   var msg_collect2 = ' Mal den Druck erhöht, ohne dass der Ballon explodiert ist. Der Ballon wäre in dieser Runde erst nach '
-  var msg_collect3 = ' Druckerhöhungen explodiert.</p><p>Sie haben ';
+  var msg_collect3 = ' Druckerhöhungen geplatzt.</p><p>Sie haben ';
   var msg_collect4 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p>';
-  var end_gratz = '<h2>Herzlichen Glückwunsch!</h2>';
-  var msg_end1 = '<p>Sie haben im Ballon-Spiel ';
-  var msg_end2 = ' Taler Gewinn gemacht! </p><p>Klicken Sie auf <i>Weiter</i>, um mit dem <strong>Persönlichkeitstest</strong>, dem <strong>Wortschatztest</strong> und dem <strong>Quiz</strong> fortzufahren.</p>';
+  var msg_end1 = '<p>Damit ist der erste von vier Teilen der Studie abgeschlossen. Sie haben im Ballon-Spiel ';
+  var msg_end2 = ' Taler Gewinn gemacht. </p><p>Klicken Sie auf <i>Weiter</i>, um mit dem <strong>Persönlichkeitstest</strong>, dem <strong>Wortschatztest</strong> und dem <strong>Quiz</strong> fortzufahren.</p>';
   
   
   // initialize labels
@@ -71,7 +70,7 @@ $(document).ready(function() {
     $('#ballon').remove();
     $('#press').remove();
     $('#gonext').remove();
-    $('#round').html(end_gratz);
+    $('#round').remove();
     $('#goOn').show();
     $('#message').html(msg_end1+total+msg_end2).show();
     $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
@@ -141,7 +140,10 @@ $(document).ready(function() {
   
   // collect button: release pressure and hope for money
   $('#collect').click(function() {
-      if (pumps > 0) { // only works after at least one pump has been made
+      if (pumps === 0) {
+	alert('In der Zuleitung befindet sich noch keine Luft. Sie können den Ballon erst aufpumpen, sobald Sie mindestens einmal Luft in die Zuleitung gepumpt haben. Betätigen Sie dazu den Button "Druck in der Zuleitung erhöhen."');
+      }
+      else if (pumps > 0) { // only works after at least one pump has been made
 	var explosion = 0; // is set to one if pumping goes beyond explosion point; see below
 	number_pumps.push(pumps); // save number of pumps
 	pumpmeup = pumps;
