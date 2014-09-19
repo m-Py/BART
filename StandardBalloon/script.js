@@ -12,13 +12,12 @@ $(document).ready(function() {
   var pumps; 
   var total = 0; // money that has been earned in total
   var rounds_played = 30;
-  var explode_array =  [32, 117, 103,  80,  63,  20,  26, 108,  75, 109,  72,  88,  77,  22,  83,  86,  57,  14,   1,  90,  56,  41,  56,  27, 108,  42, 116,  18,  43,  95];
+  var explode_array =  [31, 113, 80,  63, 103, 20,  26, 100,  75, 109,  72,  88,  77,  22,  83,  86,  57,  14, 9,  90,  56,  41,  56,  27, 108,  42, 116,  18,  43,  95];
   var maximal_pumps = 128;
-  var pumpmeup; // number pumps in a given round
+  var pumpmeup; // number pumps in a given round; is updated each round
   var number_pumps = []; // arrays for saving number of pumps
   var exploded = []; // array for saving whether ballon has exploded
-  var explosion;
-  
+  var explosion; // will an explosion occur? 1 = yes, 0 = no
   
   // initialize language
   var label_press = 'Ballon aufpumpen';
