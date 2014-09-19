@@ -28,28 +28,6 @@
 
 }
 
-
-#showValue {
-  margin-top: 200px;
-  text-align: right;
-}
-
-
-.ui-state-disabled {
-   opacity: 1;
-}
-
-.ui-slider-handle {
-  text-align:center;
-  text-decoration: none;
-}
-
-.ui-slider-range { 
-  background-image:none;
-  background-color: #D2691E; 
-}
-
-
 #ballonwrap {
   height: 420px;
   border: solid black 1px;
