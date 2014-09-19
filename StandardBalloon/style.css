@@ -1,0 +1,118 @@
+#round {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 135%;
+}
+
+#message {
+  margin-top: 20px;
+  padding: 10px;
+  line-height: 1.3;
+  font-size: 110%;
+}
+
+#round h2 {
+  margin-bottom: 0px;
+  padding: 1px;
+}
+
+
+#bigwrap {
+  text-align: center;
+  width: 550px;
+  font-size: 135%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+
+}
+
+
+#showValue {
+  margin-top: 200px;
+  text-align: right;
+}
+
+
+.ui-state-disabled {
+   opacity: 1;
+}
+
+.ui-slider-handle {
+  text-align:center;
+  text-decoration: none;
+}
+
+.ui-slider-range { 
+  background-image:none;
+  background-color: #D2691E; 
+}
+
+
+#ballonwrap {
+  height: 420px;
+  border: solid black 1px;
+  border-radius: 5px;
+  width: 100%;
+  background: #fff;
+}
+
+#ballon {
+  height: 150px;
+  width: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: -380px;
+}
+
+
+#total {
+  display: table;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+#press, #goOn, #collect {
+  font-size:110%;
+  width: 100%;
+}
+
+#total_term, #total_value {
+  display: table-cell;
+  width: 50%;
+}
+
+#total_term {
+  text-align: right;
+}
+
+#press, #collect, #goOn, #gonext {
+  cursor: pointer;
+  background: #ddd;
+}
+
+#press:hover, #collect:hover, #goOn:hover, #gonext:hover {
+  background-color: #c2c2c2;
+}
+
+#gonext {
+  font-size: 110%;
+  border-radius: 10px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px;
+}
+
+#goOn {
+  display: none;
+}
+
+
+
