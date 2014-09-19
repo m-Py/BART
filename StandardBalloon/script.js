@@ -7,13 +7,13 @@ $(document).ready(function() {
   // initialize values
   var round = 0;
   var start_size = 150; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
-  var increase = 8; // number of pixels by which balloon is increased each pump
+  var increase = 2; // number of pixels by which balloon is increased each pump
   var size; // start_size incremented by 'increase'
   var pumps; 
   var total = 0; // money that has been earned in total
-  var rounds_played = 6;
-  var explode_array =  [17, 10, 23, 13, 7, 20];
-  var maximal_pumps = 30;
+  var rounds_played = 30;
+  var explode_array =  [32, 117, 103,  80,  63,  20,  26, 108,  75, 109,  72,  88,  77,  22,  83,  86,  57,  14,   1,  90,  56,  41,  56,  27, 108,  42, 116,  18,  43,  95];
+  var maximal_pumps = 128;
   var pumpmeup; // number pumps in a given round
   var number_pumps = []; // arrays for saving number of pumps
   var exploded = []; // array for saving whether ballon has exploded
