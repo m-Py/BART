@@ -33,8 +33,8 @@ $(document).ready(function() {
   var msg_collect2 = ' Mal den Druck erhöht, ohne dass der Ballon explodiert ist. Der Ballon wäre in dieser Runde erst nach '
   var msg_collect3 = ' Druckerhöhungen geplatzt.</p><p>Sie haben ';
   var msg_collect4 = ' Taler Gewinn gemacht. Das erspielte Geld ist sicher in der Bank.</p>';
-  var msg_end1 = '<p>Damit ist der erste von vier Teilen der Studie abgeschlossen. Sie haben im Ballon-Spiel ';
-  var msg_end2 = ' Taler Gewinn gemacht. </p><p>Klicken Sie auf <i>Weiter</i>, um mit dem <strong>Persönlichkeitstest</strong>, dem <strong>Wortschatztest</strong> und dem <strong>Quiz</strong> fortzufahren.</p>';
+  var msg_end1 = '<p>Damit ist dieser Teil der Studie abgeschlossen. Sie haben im Ballon-Spiel ';
+  var msg_end2 = ' Taler Gewinn gemacht. </p><p>Klicken Sie auf <i>Weiter</i>, um mit der Studie forzufahren.</p>';
   
   
   // initialize labels
