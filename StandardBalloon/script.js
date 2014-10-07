@@ -1,4 +1,4 @@
-// pressure version of the BART
+// standard version of the BART
 
 $(document).ready(function() { 
 
