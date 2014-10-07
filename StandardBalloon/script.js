@@ -12,17 +12,19 @@ $(document).ready(function() {
   var pumps; 
   var total = 0; // money that has been earned in total
   var rounds_played = 30;
-  var explode_array =  [31, 113, 80,  63, 103, 20,  26, 100,  75, 109,  72,  88,  77,  22,  83,  86,  57,  14, 9,  90,  56,  41,  56,  27, 108,  42, 116,  18,  43,  95];
+  var explode_array =  [31, 80,  63, 103, 20,  26, 100,  75, 109,  72,  88,  77, 113, 22,  83,  86,  57,  14, 9,  90,  56,  41,  56,  27, 108,  42, 116,  18,  43,  95];
   var maximal_pumps = 128;
   var pumpmeup; // number pumps in a given round; is updated each round
   var number_pumps = []; // arrays for saving number of pumps
   var exploded = []; // array for saving whether ballon has exploded
   var explosion; // will an explosion occur? 1 = yes, 0 = no
+  var last_win = 0; // initialize variable that contains the win of the previous round
   
   // initialize language
   var label_press = 'Ballon aufpumpen';
   var label_collect = '$$$ einsammeln';
   var label_balance = 'Gesamtguthaben:';
+  var label_last = 'Gewinn letzte Runde:';
   var label_currency = ' Taler';
   var label_header = 'Ballon-Spiel Runde ';
   var label_gonext1 = 'Nächste Runde starten';
@@ -43,7 +45,8 @@ $(document).ready(function() {
   $('#collect').html(label_collect);
   $('#total_term').html(label_balance);
   $('#total_value').html(total+label_currency);
-  
+  $('#last_term').html(label_last);
+  $('#last_value').html(last_win+label_currency);
   
   // below: create functions that define game functionality
   
@@ -113,6 +116,9 @@ $(document).ready(function() {
     $('#total_value').html(total+label_currency);
   };
   
+  var show_last = function() {
+    $('#last_value').html(last_win+label_currency);
+  };
   
   // button functionalities
   
@@ -127,6 +133,7 @@ $(document).ready(function() {
         $('#ballon').height(size);
       }
       else {
+	last_win = 0;
 	pumpmeup = pumps;
 	pumps = -1; // makes pumping button unclickable until new round starts
 	explosion = 1; // save that balloon has exploded this round
@@ -135,6 +142,7 @@ $(document).ready(function() {
 	number_pumps.push(pumpmeup); // save number of pumps
 	setTimeout(explosion_message, 1200);
 	setTimeout(gonext_message, 1200);
+	setTimeout(show_last, 1200);
       }
     }
   });
@@ -154,7 +162,9 @@ $(document).ready(function() {
 	collected_message();
 	gonext_message();
 	total += pumpmeup;
+	last_win = pumpmeup;
 	increase_value();
+	show_last();
       }
   });
   

@@ -45,7 +45,7 @@
 }
 
 
-#total {
+#total, #last_round {
   display: table;
   width: 100%;
   margin-top: 4px;
@@ -61,12 +61,12 @@
   width: 100%;
 }
 
-#total_term, #total_value {
+#total_term, #total_value, #last_term, #last_value {
   display: table-cell;
   width: 50%;
 }
 
-#total_term {
+#total_term, #last_term {
   text-align: right;
 }
 
