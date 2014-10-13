@@ -32,9 +32,8 @@ $(document).ready(function() {
   var msg_explosion1 = '<p>Der Ballon ist in dieser Runde nach dem ';
   var msg_explosion2 = '. Mal Aufpumpen geplatzt. <p>Sie haben in dieser Runde kein Geld verdient.</p>';
   
-  var msg_collect1 = 'Sie haben den Ballon ';
-  var msg_collect2 = ' Mal aufgepumpt, ohne dass er geplatzt ist. Sie verdienen diese Runde '
-  var msg_collect3 = ' Taler. Das erspielte Geld ist sicher in der Bank.';
+  var msg_collect1 = '<p>Der Ballon ist nicht geplatzt!</p><p>Sie verdienen diese Runde ';
+  var msg_collect2 = ' Taler.</p><p> Das erspielte Geld ist sicher in der Bank.</p>';
 
   var msg_end1 = '<p>Damit ist dieser Teil der Studie abgeschlossen. Sie haben im Ballon-Spiel ';
   var msg_end2 = ' Taler Gewinn gemacht. </p><p>Klicken Sie auf <i>Weiter</i>, um mit der Studie fortzufahren.</p>';
@@ -75,6 +74,7 @@ $(document).ready(function() {
     $('#press').remove();
     $('#gonext').remove();
     $('#round').remove();
+    $('#last_round').remove();
     $('#goOn').show();
     $('#message').html(msg_end1+total+msg_end2).show();
     $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
@@ -92,7 +92,7 @@ $(document).ready(function() {
   var collected_message = function() {
     $('#collect').hide();
     $('#press').hide();    
-    $('#message').html(msg_collect1+pumpmeup+msg_collect2+pumpmeup+msg_collect3).show();
+    $('#message').html(msg_collect1+pumpmeup+msg_collect2).show();
   };  
 
   // animate explosion using jQuery UI explosion
