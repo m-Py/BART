@@ -89,11 +89,13 @@ $(document).ready(function() {
     $('#collect').hide();
     $('#press').hide();    
     $('#message').html(msg_1+pumpmeup+msg_collect2+explode_array[round-1]+msg_collect3+pumpmeup+msg_collect4).show();
+    document.getElementById('tada_sound').play();
   };  
 
   // animate explosion using jQuery UI explosion
   var balloon_explode = function() {
     $('#ballon').hide( "explode", {pieces: 48}, 1000 );
+    document.getElementById('explosion_sound').play();
   };  
   
   // show button that starts next round
@@ -111,7 +113,7 @@ $(document).ready(function() {
   var increase_value = function() {
     $('#total_value').html(total+label_currency);
   };
-  
+   
   
   // button functionalities
   
