@@ -79,6 +79,7 @@ $(document).ready(function() {
     $('#message').html(msg_end1+total+msg_end2).show();
     $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
     $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
+    $('#saveThis3').html('<input type='+saveThis+' name ="v_577" value="'+total+'" />');
   };
   
   // message shown if balloon explodes
