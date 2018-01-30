@@ -82,7 +82,8 @@ $(document).ready(function() {
         store_data(); // note: this function needs to be defined properly
     };
     
-    // Important: this function will have to be replaced for whatever server is used!
+    // Important: this function will have to be replaced to ensure that
+    // the data is actually sent to _your_ server: 
     var store_data = function() {
         $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
         $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
