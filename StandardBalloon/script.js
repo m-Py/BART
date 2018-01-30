@@ -106,7 +106,11 @@ $(document).ready(function() {
     // animate explosion using jQuery UI explosion
     var balloon_explode = function() {
         $('#ballon').hide( "explode", {pieces: 48}, 1000 );
-        document.getElementById('explosion_sound').play();
+
+        // activate this if you have a sound file to play a sound
+        // when the balloon explodes:
+        
+        // document.getElementById('explosion_sound').play();
     };  
     
     // show button that starts next round
@@ -161,7 +165,10 @@ $(document).ready(function() {
 	    alert(err_msg);
         } else if (pumps > 0) { // only works after at least one pump has been made
 	    exploded.push(explosion); // save whether balloon has exploded or not
-	    document.getElementById('tada_sound').play();
+            // activate this if you have a sound file to play a sound
+            // when the balloon does not explode:
+            
+	    // document.getElementById('tada_sound').play(); 
 	    number_pumps.push(pumps); // save number of pumps
 	    pumpmeup = pumps;
 	    pumps = -1; // makes pumping button unclickable until new round starts

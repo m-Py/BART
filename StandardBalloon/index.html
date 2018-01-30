@@ -16,43 +16,46 @@ BART
 
 </head>
 
-  <body>
-  
-  <audio id="explosion_sound" src="explosion.wav" preload="auto"></audio>
-  <audio id="tada_sound" src="tada.wav" preload="auto"></audio>
+<body>
+  <!-- here you can a file to play a sound when the balloon explodes or
+  a round is ended successfully: -->
+  <!-- 
+       <audio id="explosion_sound" src="explosion.wav" preload="auto"></audio>
+       <audio id="tada_sound" src="tada.wav" preload="auto"></audio>
+       -->
   
   <div id="round"></div>
 	
-    <div id="bigwrap">
+  <div id="bigwrap">
 
 	  
-	  <div id="ballonwrap">
-	    <div id="message"></div>
-	    <div id="gonext"></div>
-	    <img src="balloon_new.png" id="ballon" alt="Ballon">
-	  </div>
+    <div id="ballonwrap">
+      <div id="message"></div>
+      <div id="gonext"></div>
+      <img src="Balloon.png" id="ballon" alt="Ballon">
+    </div>
 	  
-	  <button type="button" id="press"></button>
-	  <button type="button" id="collect"></button>
-	  
-	  <div id="last_round">
-	    <div id="last_term"></div>
-	    <div id="last_value"></div>
-	  </div>
-	  
-	  <div id="total">
-	    <div id="total_term"></div>
-	    <div id="total_value"></div>
-	  </div>
-	  
-	  <button type="button" id="goOn">Weiter</button>
-
+    <button type="button" id="press"></button>
+    <button type="button" id="collect"></button>
+    
+    <div id="last_round">
+      <div id="last_term"></div>
+      <div id="last_value"></div>
     </div>
     
+    <div id="total">
+      <div id="total_term"></div>
+      <div id="total_value"></div>
+    </div>
+    
+    <button type="button" id="goOn">Weiter</button>
+    
+  </div>
+  
   <div id="saveThis1"></div>
   <div id="saveThis2"></div>
   <div id="saveThis3"></div>  
   
-  </body>
+</body>
 
 </html>
