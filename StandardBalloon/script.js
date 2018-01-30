@@ -2,7 +2,7 @@
 
 $(document).ready(function() { 
 
-  var saveThis = 'hidden'; // text fields that save data should not be shown; can be shown in testing
+  var saveThis = 'hidden'; // text fields that saves data should not be shown; can be shown in testing
   
   // initialize values
   var round = 0;
@@ -37,6 +37,8 @@ $(document).ready(function() {
 
   var msg_end1 = '<p>Damit ist dieser Teil der Studie abgeschlossen. Sie haben im Ballon-Spiel ';
   var msg_end2 = ' Taler Gewinn gemacht. </p><p>Klicken Sie auf <i>Weiter</i>, um mit der Studie fortzufahren.</p>';
+  
+  var err_msg = 'Sie können erst Geld einsammeln, sobald Sie den Ballon mindestens einmal aufgepumpt haben. Betätigen Sie dazu den Button "Ballon aufpumpen."';
   
   
   // initialize labels
@@ -77,6 +79,11 @@ $(document).ready(function() {
     $('#last_round').remove();
     $('#goOn').show();
     $('#message').html(msg_end1+total+msg_end2).show();
+    store_data(); // note: this function needs to be defined properly
+  };
+  
+  // Important: this function will have to be replaced for whatever server is used!
+  var store_data = function() {
     $('#saveThis1').html('<input type='+saveThis+' name ="v_177" value="'+number_pumps+'" />');
     $('#saveThis2').html('<input type='+saveThis+' name ="v_178" value="'+exploded+'" />');
     $('#saveThis3').html('<input type='+saveThis+' name ="v_577" value="'+total+'" />');
@@ -153,7 +160,7 @@ $(document).ready(function() {
   // collect button: release pressure and hope for money
   $('#collect').click(function() {
       if (pumps === 0) {
-	alert('Sie können erst Geld einsammeln, sobald Sie den Ballon mindestens einmal aufgepumpt haben. Betätigen Sie dazu den Button "Ballon aufpumpen."');
+	alert(err_msg);
       }
       else if (pumps > 0) { // only works after at least one pump has been made
 	exploded.push(explosion); // save whether balloon has exploded or not
@@ -179,13 +186,14 @@ $(document).ready(function() {
     else {
       end_game();
     }
-  });  
+  });
 
-  // continue button that is shown when the game has ended
+  // continue button is shown when the game has ended. This needs to be replaced
+  // by a function that takes into account on which platform the BART runs (i.e.
+  // how will the page be submitted?)
   $("#goOn").click(function() {
     $("form[name=f1]").submit();
   });
-  
   
   // start the game!
   new_round();
